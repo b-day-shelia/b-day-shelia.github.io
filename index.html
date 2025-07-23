@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>С Днем Рождения, Шелия!</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     * {
@@ -49,7 +49,7 @@
       padding: 10px;
       z-index: 2;
       pointer-events: none;
-      background: none;
+      background: #EF9C66;
       text-align: center;
     }
 
@@ -59,16 +59,11 @@
       align-items: center;
     }
 
-    .header-img {
-      height: 120px;
-      margin-bottom: 10px;
-      pointer-events: none;
-    }
 
     h1 {
       margin: 0;
-      font-size: 2.5rem;
-      color: #FD980C;
+      font-size: 3.5rem;
+      color: #FCDC94;
       text-shadow: 0 0 0;
       line-height: 1.2;
     }
@@ -78,7 +73,7 @@
       cursor: pointer;
       z-index: 1;
       transition: transform 0.3s ease;
-      max-width: 150px;
+      user-select: none;
     }
 
     .overlay {
@@ -99,7 +94,7 @@
     .overlay img {
       width: 90%;
       max-width: 500px;
-      transition: transform 极.5s ease;
+      transition: transform 0.5s ease;
     }
 
     .from {
@@ -109,6 +104,11 @@
       text-shadow: 0 0 10px #ff9800;
       text-align: center;
     }
+	
+	.eat-animation {
+		animation: eat 1s forwards;
+	}
+
 
     .nyam {
       position: fixed;
@@ -155,61 +155,64 @@
       100% { transform: translate(-50%, -50%) scale(1.2); }
     }
 
-    .eat-animation {
-      animation: eat 1s forwards;
-    }
-
     @media (min-width: 768px) {
       body {
         flex-direction: row;
       }
-      
-      /* УВЕЛИЧЕННЫЕ БОКОВЫЕ ЛИНИИ */
       .side {
         display: block;
-        width: 10vw; /* Увеличение с 10vw */
-        min-width: 80px; /* Увеличение со 100px */
-        max-width: 300px; /* Увеличение с 250px */
+        width: 10vw;
+        min-width: 80px;
+        max-width: 300px;
         background-color: #FFCC70;
         height: 100vh;
       }
-      
       .header {
         flex-direction: row;
         padding: 10px 40px;
       }
-      
       .header-content {
         flex-direction: row;
       }
-      
       .header-img {
-        height: 200px;
-        margin-right: 15px;
+        height: 130px;
+        margin-right: 15px;        
+		margin-left: 15px;
         margin-bottom: 0;
       }
-      
       h1 {
         font-size: 3rem;
       }
-      
-      .dolka {
-        max-width: 200px;
-      }
-      
       .from {
         font-size: 1.5rem;
       }
-      
       .nyam {
         font-size: 2rem;
       }
-      
-      /* УМЕНЬШЕННЫЙ ОТСТУП СВЕРХУ */
       .main {
-        padding-top: 120px; /* Было 160px */
+        padding-top: 120px;
       }
     }
+	
+	@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .header-img {
+    display: none !important;
+  }
+  
+   .nyam {
+    font-size: 1.5rem !important; /* уменьшенный размер */
+    white-space: nowrap; /* не переносить текст */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    text-align: center;
+  }
+}
   </style>
 </head>
 <body>
@@ -219,6 +222,7 @@
       <div class="header-content">
         <img class="header-img" src="img/zag.png" alt="подарок" />
         <h1>С Днем Рождения, Шелия!</h1>
+        <img class="header-img" src="https://radika1.link/2025/07/23/zagrightd6fe9b4696843639.png" alt="подарок2" />
       </div>
     </div>
 
@@ -228,108 +232,37 @@
       <div class="nyam" id="nyamText">Ням-ням!</div>
     </div>
     
-    <!-- Контейнер для долек -->
     <div id="dolkisContainer" style="position: relative; height: 100%;"></div>
-
-    <button class="restart-btn" onclick="restart()"> Еще раз? 🍊  </button>
+    <button class="restart-btn" onclick="restart()">Ещё раз? 🍊</button>
   </div>
   <div class="side"></div>
 
   <script>
-  const dolkaData = [
-    {
-      src: 'img/Adeline Delhi-Scafer.png',
-      from: 'Adeline Delhi-Scafere'
-    },
-    {
-      src: 'img/Evyline McFie.png',
-      from: 'Evyline McFie'
-    },
-    {
-      src: 'img/Gugo Helwell.png',
-      from: 'Gugo Helwell'
-    },
-    {
-      src: 'img/Ариадна Фрост.png',
-      from: 'Ариадна Фрост'
-    },
-    {
-      src: 'img/Блейк.png',
-      from: 'Блейк Эллингтон'
-    },
-    {
-      src: 'img/Грейс Даймонд-де-Кур.png',
-      from: 'Grace Diamond-de-Kur'
-    },
-    {
-      src: 'img/Джаред Крин.png',
-      from: 'Джаред Крин'
-    },
-    {
-      src: 'img/Джульетта Хелвелл-де-Кур.png',
-      from: 'Julietta Helwell-de-Kur'
-    },
-    {
-      src: 'img/Дина Ли.png',
-      from: 'Dina Lee'
-    },
-    {
-      src: 'img/Камилка Копилка.png',
-      from: 'Камилка Копилка'
-    },
-    {
-      src: 'img/Каталина.png',
-      from: 'Каталина Вульф'
-    },
-    {
-      src: 'img/Ласс.png',
-      from: 'Ласс Ранйяр'
-    },
-    {
-      src: 'img/Леон.png',
-      from: 'Леон Морелло'
-    },
-    {
-      src: 'img/Мари Раймон.png',
-      from: 'Мари Раймон'
-    },
-    {
-      src: 'img/Марин.png',
-      from: 'Marin Seafour'
-    },
-    {
-      src: 'img/Мизуки Хироми.png',
-      from: 'Мизуки Хироми'
-    },
-    {
-      src: 'img/Рогнеда Хольмгрен.png',
-      from: 'Рогнеда Хольмгрен'
-    },
-    {
-      src: 'img/Уилл Роланд.png',
-      from: 'Уилл Роланд'
-    },
-    {
-      src: 'img/Хаттори Райто.png',
-      from: 'Хаттори Райто'
-    },
-    {
-      src: 'img/Хелена Кейн.png',
-      from: 'Хелена Кейн'
-    },
-    {
-      src: 'img/Шуга Ренн.png',
-      from: 'Шуга Ренн'
-    },
-    {
-      src: 'img/Энни Эрексон.png',
-      from: 'Энни Эриксон'
-    },
-    {
-      src: 'img/Яхья.png',
-      from: 'Яхья Фатхи'
-    }
-  ];
+    const dolkaData = [
+      { src: 'img/Adeline Delhi-Scafer.png',       from: 'Adeline Delhi-Scafere' },
+      { src: 'img/Evyline McFie.png',               from: 'Evyline McFie' },
+      { src: 'img/Gugo Helwell.png',                from: 'Gugo Helwell' },
+      { src: 'img/Ариадна Фрост.png',               from: 'Ариадна Фрост' },
+      { src: 'img/Блейк.png',                       from: 'Блейк Эллингтон' },
+      { src: 'img/Грейс Даймонд-де-Кур.png',        from: 'Grace Diamond-de-Kur' },
+      { src: 'img/Джаред Крин.png',                 from: 'Джаред Крин' },
+      { src: 'img/Джульетта Хелвелл-де-Кур.png',     from: 'Julietta Helwell-de-Kur' },
+      { src: 'img/Дина Ли.png',                     from: 'Dina Lee' },
+      { src: 'img/Камилка Копилка.png',             from: 'Камилка Копилка' },
+      { src: 'img/Каталина.png',                    from: 'Каталина Вульф' },
+      { src: 'img/Ласс.png',                        from: 'Ласс Ранйяр' },
+      { src: 'img/Леон.png',                        from: 'Леон Морелло' },
+      { src: 'img/Мари Раймон.png',                 from: 'Мари Раймон' },
+      { src: 'img/Марин.png',                       from: 'Marin Seafour' },
+      { src: 'img/Мизуки Хироми.png',               from: 'Мизуки Хироми' },
+      { src: 'img/Рогнеда Хольмгрен.png',           from: 'Рогнеда Хольмгрен' },
+      { src: 'img/Уилл Роланд.png',                 from: 'Уилл Роланд' },
+      { src: 'img/Хаттори Райто.png',               from: 'Хаттори Райто' },
+      { src: 'img/Хелена Кейн.png',                 from: 'Хелена Кейн' },
+      { src: 'img/Шуга Ренн.png',                   from: 'Шуга Ренн' },
+      { src: 'img/Энни Эрексон.png',                from: 'Энни Эриксон' },
+      { src: 'img/Яхья.png',                        from: 'Яхья Фатхи' }
+    ];
 
     const overlay = document.getElementById('overlay');
     const bigDolka = document.getElementById('bigDolka');
@@ -340,19 +273,17 @@
     let activeDolka = null;
     let allDolkis = [];
     let isEating = false;
+    let resizeTimeout;
 
     function isOverlapping(x, y, size, others) {
-      const minDistance = size * 0.1;
-      
       for (const other of others) {
         const ox = parseFloat(other.style.left);
         const oy = parseFloat(other.style.top);
         const os = parseFloat(other.style.width);
-        
-        const horizontalOverlap = Math.abs(x - ox) * 2 < (size + os);
-        const verticalOverlap = Math.abs(y - oy) * 2 < (size + os);
-        
-        if (horizontalOverlap && verticalOverlap) return true;
+        if (
+          Math.abs(x - ox)*2 < (size + os) &&
+          Math.abs(y - oy)*2 < (size + os)
+        ) return true;
       }
       return false;
     }
@@ -360,19 +291,13 @@
     function createDolkis() {
       dolkisContainer.innerHTML = '';
       allDolkis = [];
-      
       const bounds = dolkisContainer.getBoundingClientRect();
       const isMobile = window.innerWidth < 768;
-      
-      const header = document.querySelector('.header');
-      const headerHeight = header ? header.offsetHeight : 140;
-      
-      // УМЕНЬШЕННЫЙ ОТСТУП СВЕРХУ ДЛЯ ДОЛЕК
-      const topLimit = headerHeight * 0.7; // 70% от высоты заголовка
+      const headerHeight = document.querySelector('.header')?.offsetHeight || 140;
+      const topLimit = headerHeight * 0.7;
       const bottomLimit = 100;
       const padding = 10;
       const availableHeight = bounds.height - topLimit - bottomLimit;
-      
       if (availableHeight < 50) return;
 
       dolkaData.forEach((item, index) => {
@@ -380,47 +305,41 @@
         img.src = item.src;
         img.className = 'dolka';
         img.dataset.from = item.from;
-        img.style.zIndex = '1';
 
-        let size, x, y;
-        let attempts = 0;
-        const maxAttempts = 200;
-
-        size = Math.floor(Math.random() * (isMobile ? 60 : 80)) + (isMobile ? 60 : 120);
-        
-        if (size > availableHeight * 0.8) {
-          size = Math.floor(availableHeight * 0.8);
-        }
-
+        let size = Math.floor(Math.random() * (isMobile ? 60 : 80)) + (isMobile ? 60 : 120);
+        if (size > availableHeight * 0.8) size = Math.floor(availableHeight * 0.8);
+        let x, y, attempts = 0;
         do {
-          x = padding + Math.random() * (bounds.width - padding * 2 - size);
-          // Разрешаем долькам быть ближе к заголовку
-          y = topLimit + Math.random() * Math.max(1, (bounds.height - topLimit - bottomLimit - size));
-          
+          x = padding + Math.random() * (bounds.width - padding*2 - size);
+          y = topLimit + Math.random() * Math.max(1, bounds.height - topLimit - bottomLimit - size);
           attempts++;
-          if (attempts > maxAttempts) {
-            y = topLimit + index * 10;
-            break;
-          }
+          if (attempts > 200) { y = topLimit + index * 10; break; }
         } while (isOverlapping(x, y, size, allDolkis));
-        
-        img.style.width = `${size}px`;
-        img.style.height = 'auto';
-        img.style.position = 'absolute';
-        img.style.left = `${x}px`;
-        img.style.top = `${y}px`;
 
+        img.style.width  = size + 'px';
+        img.style.height = 'auto';
+        img.style.left   = x + 'px';
+        img.style.top    = y + 'px';
+
+        // скорость
+        const speed = 0.3 + Math.random() * 0.7;
+        const angle = Math.random() * Math.PI * 2;
+        img.vx = Math.cos(angle) * speed;
+        img.vy = Math.sin(angle) * speed;
+
+        // клик
         img.addEventListener('click', () => {
           if (isEating) return;
           activeDolka = img;
           bigDolka.src = item.src;
-          bigDolka.style.opacity = '1';
-          bigDolka.style.transform = 'none';
           fromText.textContent = item.from;
           overlay.style.display = 'flex';
           nyamText.style.display = 'none';
           bigDolka.style.display = 'block';
           fromText.style.display = 'block';
+          bigDolka.style.opacity = '1';
+          bigDolka.style.transform = 'none';
+          bigDolka.classList.remove('eat-animation');
         });
 
         dolkisContainer.appendChild(img);
@@ -432,20 +351,13 @@
       if (activeDolka && !isEating) {
         isEating = true;
         fromText.style.display = 'none';
-        
         bigDolka.classList.add('eat-animation');
-        
         bigDolka.addEventListener('animationend', () => {
           nyamText.style.display = 'block';
-          
           setTimeout(() => {
             overlay.style.display = 'none';
             nyamText.style.display = 'none';
-            
-            if (activeDolka && activeDolka.parentNode) {
-              activeDolka.remove();
-            }
-            
+            if (activeDolka.parentNode) activeDolka.remove();
             allDolkis = allDolkis.filter(d => d !== activeDolka);
             activeDolka = null;
             isEating = false;
@@ -455,19 +367,45 @@
       }
     }
 
+    function animateDolkis() {
+      const bounds = dolkisContainer.getBoundingClientRect();
+      const headerHeight = document.querySelector('.header')?.offsetHeight || 140;
+      const topLimit = headerHeight * 0.7;
+      const bottomLimit = bounds.height - 100;
+
+      allDolkis.forEach(img => {
+        let x = parseFloat(img.style.left);
+        let y = parseFloat(img.style.top);
+        const w = img.offsetWidth, h = img.offsetHeight;
+
+        x += img.vx;
+        y += img.vy;
+
+        if (x < 0) { x = 0; img.vx *= -1; }
+        else if (x + w > bounds.width) { x = bounds.width - w; img.vx *= -1; }
+        if (y < topLimit) { y = topLimit; img.vy *= -1; }
+        else if (y + h > bottomLimit) { y = bottomLimit - h; img.vy *= -1; }
+
+        img.style.left = x + 'px';
+        img.style.top  = y + 'px';
+      });
+
+      requestAnimationFrame(animateDolkis);
+    }
+
     function restart() {
       createDolkis();
     }
 
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(restart, 200);
-    });
-
     window.addEventListener('load', () => {
       createDolkis();
       overlay.addEventListener('click', handleOverlayClick);
+      animateDolkis();
+    });
+
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(restart, 200);
     });
   </script>
 </body>
